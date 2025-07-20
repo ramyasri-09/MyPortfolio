@@ -1,38 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Skills</title>
-    <link rel="stylesheet" href="skills.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Skills</title>
+  <link rel="stylesheet" href="skills.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>My Skills</h1>
-        
-        <div class="skill-section">
-            <h2>Programming Languages</h2>
-            <div class="skill"><span>Python</span><div class="progress" style="--level: 90%"></div></div>
-            <div class="skill"><span>Java</span><div class="progress" style="--level: 80%"></div></div>
-            <div class="skill"><span>C</span><div class="progress" style="--level: 75%"></div></div>
-        </div>
-        
-        <div class="skill-section">
-            <h2>Web Development</h2>
-            <div class="skill"><span>HTML</span><div class="progress" style="--level: 95%"></div></div>
-            <div class="skill"><span>CSS</span><div class="progress" style="--level: 85%"></div></div>
-            <div class="skill"><span>JavaScript</span><div class="progress" style="--level: 70%"></div></div>
-        </div>
-        
-        <div class="skill-section">
-            <h2>Tools</h2>
-            <div class="skill"><span>eclipse</span><div class="progress" style="--level: 80%"></div></div>
-            <div class="skill"><span>VS Code</span><div class="progress" style="--level: 90%"></div></div>
-            <div class="skill"><span>Tableau</span><div class="progress" style="--level: 60%"></div></div>
-        </div>
+
+  <section class="skills-section">
+    <h1>My Skills</h1>
+
+    <!-- Programming Skills -->
+    <h2 class="category-heading">Programming</h2>
+    <div class="cards-container">
+      <div class="skill-card">
+        <h3>C </h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="90"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      <div class="skill-card">
+        <h3>Java</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="85"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      <div class="skill-card">
+        <h3>Python</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="70"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
     </div>
-    <div class="home-button">
-        <a href="index.html" class="btn">Back to Home</a>
+
+    <!-- Web Development Skills -->
+    <h2 class="category-heading">Web Development</h2>
+    <div class="cards-container">
+      <div class="skill-card">
+        <h3>HTML / CSS</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="95"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="85"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      
     </div>
+
+    <!-- Tools -->
+    <h2 class="category-heading">Tools</h2>
+    <div class="cards-container">
+      <div class="skill-card">
+        <h3>GitHub</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="85"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      <div class="skill-card">
+        <h3>VS Code</h3>
+        <div class="progress-bar"><div class="progress-fill" data-percent="90"></div></div>
+        <span class="percent-text">0%</span>
+      </div>
+      
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-home">
+      <a href="index.html" class="btn">Back to Home</a>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".skill-card").forEach(card => {
+        const fill = card.querySelector(".progress-fill");
+        const percentText = card.querySelector(".percent-text");
+        const target = parseInt(fill.getAttribute("data-percent"), 10);
+        
+        // Animate fill
+        setTimeout(() => {
+          fill.style.width = target + "%";
+        }, 100);
+
+        // Animate number counter
+        let count = 0;
+        const speed = 20;
+        const counter = () => {
+          if (count <= target) {
+            percentText.textContent = count + "%";
+            count++;
+            setTimeout(counter, speed);
+          } else {
+            percentText.textContent = target + "%";
+          }
+        };
+        counter();
+      });
+    });
+  </script>
+
 </body>
 </html>
